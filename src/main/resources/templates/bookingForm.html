@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rest House</title>
+</head>
+<body>
+    <div class="container"
+         layout:fragment="content">
+        <form class="form-horizontal"
+              th:action="@{'/rooms/{id}/book/{localDate}/{localDateOut}'(id=${room.id},localDate=${localDate}, localDateOut=${localDateOut})}"
+              method="post">
+
+            <div class="form">
+                <input type="text"
+                       class="form-control"
+                       th:field="*{localDate}"
+                       required="required"/>
+            </div>
+
+            <div class="form">
+                <input type="text"
+                       class="form-control"
+                       th:field="*{localDateOut}"
+                       required="required"/>
+            </div>
+
+            <button type="submit" class="btn btn-success">Book</button>
+
+        </form>
+    </div>
+
+</body>
+</html>
