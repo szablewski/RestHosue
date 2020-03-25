@@ -8,7 +8,7 @@ Portal dealing with operating a holiday home.
 	
 ## Technologies
 Project is created with:
-* Java 11
+* Java 1.8
 * PostgreSql
 * Spring Boot 2.2.5 RELEASE
 * Thymeleaf 3.0.11.RELEASE
