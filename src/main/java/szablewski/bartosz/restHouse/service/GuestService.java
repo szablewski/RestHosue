@@ -13,13 +13,12 @@ import java.util.Optional;
 public class GuestService {
 
     private GuestRepository guestRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public GuestService(GuestRepository guestRepository) {
+    public GuestService(GuestRepository guestRepository, PasswordEncoder passwordEncoder) {
         this.guestRepository = guestRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Optional<Guest> findByUserName(String name) {
@@ -28,7 +27,6 @@ public class GuestService {
 
     public void saveUser(Guest guest) {
 
-        //TODO fix passwordEncoder
         guest.setPassword(passwordEncoder.encode(guest.getPassword()));
         guest.setRole("ROLE_GUEST");
         guestRepository.save(guest);
