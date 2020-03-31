@@ -12,11 +12,13 @@ public class Start {
         Guest guestFinanteq = new Guest();
         guestFinanteq.setUserName("Finanteq");
         guestFinanteq.setPassword(passwordEncoder.encode("Finanteq123"));
+        guestFinanteq.setEnabled(true);
         guestFinanteq.setRole("ROLE_ADMIN");
 
         Guest guestTadeusz = new Guest();
         guestTadeusz.setUserName("Tadeusz");
         guestTadeusz.setPassword(passwordEncoder.encode("Tadeusz123"));
+        guestTadeusz.setEnabled(true);
         guestTadeusz.setRole("ROLE_GUEST");
 
         guestRepository.save(guestFinanteq);
