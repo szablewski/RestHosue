@@ -13,11 +13,13 @@ public class GuestDetail implements UserDetails {
 
     private String userName;
     private String password;
+    private boolean isEnabled;
     private List<GrantedAuthority> authorities;
 
-    public GuestDetail(Guest guest){
+    public GuestDetail(Guest guest) {
         this.userName = guest.getUserName();
         this.password = guest.getPassword();
+        this.isEnabled = guest.isEnabled();
         this.authorities = Arrays.stream(guest.getRole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
@@ -55,6 +57,6 @@ public class GuestDetail implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return isEnabled;
     }
 }

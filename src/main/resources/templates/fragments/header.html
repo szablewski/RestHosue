@@ -6,26 +6,30 @@
         <ul class="navbar-nav mr-auto active">
             <li sec:authorize="!isAuthenticated()"
                 class="nav-item">
-                <a th:href="@{/rooms}">
+                <a class="nav-link"
+                   th:href="@{/rooms}">
                     Rooms
                 </a>
             </li>
             <li sec:authorize="hasRole('ADMIN')"
                 class="nav-item">
-                <a th:href="@{/room}">
+                <a class="nav-link"
+                   th:href="@{/room}">
                     Add room
                 </a>
             </li>
             <li sec:authorize="!isAuthenticated()"
                 class="nav-item">
-                <a th:href="@{/register}">
-                    Registration
+                <a class="nav-link"
+                   th:href="@{/register}">
+                    Sign on
                 </a>
             </li>
             <li sec:authorize="!isAuthenticated()"
                 class="nav-item">
-                <a th:href="@{/login}">
-                    Sing in
+                <a class="nav-link"
+                   th:href="@{/login}">
+                    Sign in
                 </a>
             </li>
         </ul>
@@ -34,7 +38,7 @@
               method="post"
               sec:authorize="isAuthenticated()">
             <button class="btn btn-secondary my-2 my-sm-0"
-                    type="submit">Wyloguj
+                    type="submit">Sign out
             </button>
         </form>
     </nav>
