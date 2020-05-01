@@ -1,5 +1,6 @@
 package szablewski.bartosz.restHouse.controller;
 
+import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,16 +9,19 @@ import szablewski.bartosz.restHouse.model.Guest;
 import szablewski.bartosz.restHouse.model.Token;
 import szablewski.bartosz.restHouse.repository.GuestRepository;
 import szablewski.bartosz.restHouse.repository.TokenRepository;
+import szablewski.bartosz.restHouse.service.TokenService;
+
+import java.util.Optional;
 
 @Controller
 public class TokenController {
 
-    private TokenRepository tokenRepository;
+    private TokenService tokenService;
     private GuestRepository guestRepository;
 
     @Autowired
-    public TokenController(TokenRepository tokenRepositoryl, GuestRepository guestRepository) {
-        this.tokenRepository = tokenRepositoryl;
+    public TokenController(TokenService tokenService, GuestRepository guestRepository) {
+        this.tokenService = tokenService;
         this.guestRepository = guestRepository;
     }
 
@@ -28,11 +32,10 @@ public class TokenController {
      * @return
      */
     @GetMapping("/token")
-    public String checkToken(@RequestParam String value){
-        Token tokenValue = tokenRepository.findByValue(value);
-        Guest guest = tokenValue.getGuest();
-        guest.setEnabled(true);
-        guestRepository.save(guest);
+    public String checkToken(@RequestParam String value) throws NotFoundException {
+
+        tokenService.checkToken(value);
+
         return "/confirm";
     }
 }
