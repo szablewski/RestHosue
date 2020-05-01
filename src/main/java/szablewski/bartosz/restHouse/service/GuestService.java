@@ -52,7 +52,7 @@ public class GuestService {
         String url = "http://localhost:8080/token?value=" + tokenValue;
 
         try {
-            mailService.sendMail(guest.getEmail(), "Potwierdzebnie rejestracji", url, false);
+            mailService.sendMail(guest.getEmail(), "Potwierdzenie rejestracji", url, false);
         } catch (MessagingException e) {
             e.printStackTrace();
         }
