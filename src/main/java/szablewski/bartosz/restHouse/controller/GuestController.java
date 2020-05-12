@@ -6,10 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import szablewski.bartosz.restHouse.model.Guest;
-import szablewski.bartosz.restHouse.model.Token;
 import szablewski.bartosz.restHouse.repository.GuestRepository;
 import szablewski.bartosz.restHouse.repository.TokenRepository;
 import szablewski.bartosz.restHouse.service.GuestService;
@@ -28,16 +25,16 @@ public class GuestController {
         this.guestRepository = guestRepository;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/sign_in")
     public String loginForm() {
-        return "login";
+        return "signIn";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/sign_up")
     public String registerForm(Model model) {
 
         model.addAttribute("guest", new Guest());
-        return "register";
+        return "signUp";
     }
 
     /**
@@ -48,17 +45,17 @@ public class GuestController {
      * @param model
      * @return login form.
      */
-    @PostMapping("/register")
-    public String register(Guest guest, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+    @PostMapping("/sign_up")
+    public String register(Guest guest, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute(guest);
             model.addAttribute("message", result.getAllErrors());
-            return "redirect:/register";
+            return "redirect:/sign_up";
         } else {
 
             guestService.saveUser(guest);
-            return "signonSuccess";
+            return "signUpSuccess";
         }
     }
 }

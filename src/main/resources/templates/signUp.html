@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/main_layout}">
+<body>
+<div layout:fragment="content"
+     class="container">
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <div class="card">
+
+                <form class="form-group"
+                      th:action="@{/sign_up}"
+                      method="post"
+                      th:object="${guest}">
+                    <h3 class="text-center">Sign up</h3>
+
+                    <div class="form-group">
+                        <label for="signup-username">Username</label>
+                        <input class="form-control"
+                               id="signup-username"
+                               th:field="*{userName}"
+                               type="text"
+                               required
+                               placeholder="Username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-email">E-mail</label>
+                        <input class="form-control"
+                               id="signup-email"
+                               th:field="*{email}"
+                               type="email"
+                               required
+                               placeholder="E-mail">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input class="form-control"
+                               id="signup-password"
+                               th:field="*{password}"
+                               type="password"
+                               required
+                               placeholder="Password">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox"
+                               required
+                               id="accept-terms">
+                        <label for="accept-terms">I accept the
+                            <a class="accept-terms"
+                               href="#0">Terms of Service and Privacy Policy
+                            </a>
+                        </label>
+                    </div>
+
+                    <button class="btn btn-success btn-block"
+                            type="submit">Sign up
+                    </button>
+
+                    <div class="form-group">You have account?
+                        <a th:href="@{/sign_in}"
+                           class="text-info">Sign in</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
