@@ -87,7 +87,7 @@ public class RoomController {
         if (result.hasErrors()) {
             model.addAttribute(room);
             model.addAttribute("message", result.getAllErrors());
-            return "/register";
+            return "signUp";
         } else {
             roomService.saveRoom(room);
             return "redirect:/rooms";
