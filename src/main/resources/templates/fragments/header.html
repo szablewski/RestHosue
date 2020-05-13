@@ -1,10 +1,10 @@
 <header xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
         th:framgent="header">
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <ul class="navbar-nav mr-auto active">
-            <li sec:authorize="!isAuthenticated()"
+            <li sec:authorize="isAuthenticated()"
                 class="nav-item">
                 <a class="nav-link"
                    th:href="@{/rooms}">
@@ -37,6 +37,15 @@
               th:action="@{/sign_out}"
               method="post"
               sec:authorize="isAuthenticated()">
+            <div class="nav-item "
+                 sec:authorize="isAuthenticated()">
+            <div class="nav-link">
+                <span>Hello </span>
+                <a th:text="${#authentication.getPrincipal().getUsername()}"
+                    th:href="@{/user}">
+                </a>
+            </div>
+            </div>
             <button class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
                     type="submit">Sign out
             </button>
