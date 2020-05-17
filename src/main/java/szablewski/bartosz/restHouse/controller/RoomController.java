@@ -104,7 +104,6 @@ public class RoomController {
     public String roomDetail(@PathVariable("id") long id, Model model) throws NotFoundException {
 
         Optional<Room> room = roomService.findById(id);
-
         model.addAttribute("room", room.orElseThrow(() ->
                 new NotFoundException("Not found room with id: " + room.get().getId())));
         return "roomDetails";
@@ -128,7 +127,7 @@ public class RoomController {
         Optional<Room> room = roomService.findById(id);
 
         String userName = principal.getName();
-        Guest guest = guestService.findGuestByUserName(userName);
+        Optional<Guest> guest = guestService.findGuestByUserName(userName);
 
         if (!dateService.checkingDates(localDate, localDateOut) == true) {
             model.addAttribute("info", "Please select correct dates");
@@ -142,7 +141,7 @@ public class RoomController {
         java.util.Date parseLocalDate1 = dateService.parseLocalDate(ld1);
         model.addAttribute("room", room.orElseThrow(() ->
                 new NotFoundException("Not found room with id: " + room.get().getId())));
-        dateService.bookRoom(parseLocalDate, parseLocalDate1, id, guest);
+        dateService.bookRoom(parseLocalDate, parseLocalDate1, id, guest.get());
         return "redirect:/rooms";
     }
 
