@@ -35,6 +35,6 @@ body {
 .nav-link {
     color: azure !important;
 }
-a {
-    color: azure !important;
+.table a {
+    color: black !important;
 }
