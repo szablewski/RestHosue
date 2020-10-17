@@ -8,52 +8,57 @@
     <title>Rest House</title>
 </head>
 <body>
+<div layout:fragment="content"
+     class="container">
+    <div class="row align-items-center">
+        <div class="col-auto">
+            <div class="card">
 
-
-    <div class="container"
-         layout:fragment="content">
-        <div class="row">
-            <div class="form-inner">
-                <form id="register-form"
+                <form class="form-group"
                       th:action="@{/room}"
                       method="post"
                       th:object="${room}">
-                    <div th:if="${message}">
-                        <h2 th:text="${message}">mess</h2>
-                    </div>
-                    <div class="form-group-material">
-                        <input id="register-price"
-                               type="number"
-                               name="price"
-                               class="input-material"
-                               th:field="*{price}"
-                               placeholder="Price">
-                    </div>
-                    <div class="form-group-material">
-                        <input id="beds"
-                               type="number"
-                               name="beds"
-                               required class="input-material"
+                    <h3 class="text-center">You can add new room for your rest house</h3>
+
+                    <div class="form-group">
+                        <label for="room-beds">Beds</label>
+                        <input class="form-control"
+                               id="room-beds"
                                th:field="*{beds}"
+                               type="text"
+                               required
                                placeholder="Beds">
                     </div>
-                    <div class="form-group-material">
-                        <input id="description"
-                               type="text"
-                               name="description"
-                               class="input-material"
+
+                    <div class="form-group">
+                        <label for="room-description">Description</label>
+                        <input class="form-control"
+                               id="room-description"
                                th:field="*{description}"
+                               type="test"
+                               required
                                placeholder="Description">
                     </div>
-                    <button type="submit" class="btn btn-success">
-                        Save
+
+                    <div class="form-group">
+                        <label for="room-price">Price per night</label>
+                        <input class="form-control"
+                               id="room-price"
+                               th:field="*{price}"
+                               type="text"
+                               required
+                               placeholder="Price">
+                    </div>
+
+                    <button class="btn btn-success btn-block"
+                            type="submit">Add
                     </button>
+
                 </form>
             </div>
         </div>
     </div>
-
-</body>
+</div></body>
 </html>
 </body>
 </html>

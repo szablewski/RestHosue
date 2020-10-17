@@ -22,9 +22,9 @@ import java.util.Optional;
 @Controller
 public class RoomController {
 
-    private RoomService roomService;
-    private GuestService guestService;
-    private DateService dateService;
+    private final RoomService roomService;
+    private final GuestService guestService;
+    private final DateService dateService;
 
     @Autowired
     public RoomController(DateService dateService, RoomService roomService, GuestService guestService) {

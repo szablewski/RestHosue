@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import java.util.Optional;
 
 @Data
 @Entity
@@ -14,11 +13,10 @@ public class Room {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private long id;
     private double price;
     private int beds;
     private boolean isReservation = false;
-
     private String description;
 
     @ManyToOne
